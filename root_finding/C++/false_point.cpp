@@ -16,7 +16,7 @@ void false_point(double a, double b, int iter_max){
     if (func(a)*func(b)>0.0)
         std::cout << "Enter correct values of a and b!\n";
 
-    double c = a;    //c is the root
+    double c;    //c is the root
 
     for (int i=0;i<iter_max;i++){
         c = (a*func(b)-b*func(a))/(func(b) - func(a));
