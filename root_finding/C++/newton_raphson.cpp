@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-// false point method for root-finding
+// Newton-Raphson method for root-finding
 
 double func(double x){
     double f = pow(x,3)-pow(x,2)+2;
