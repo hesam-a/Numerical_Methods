@@ -36,7 +36,9 @@ double lagrange_interpol(int n, Data f[], double givenX){
         //std::cout << "numerator: "  << numerator << '\n';
         //std::cout << "denominator: "<< denominator << '\n';
         coeff[i] = f[i].y* numerator/denominator;
-        std::cout << "    coeff["<< i+1 << "]: " << coeff[i] << '\n';
+        //std::cout << "    coeff["<< i+1 << "]: " << coeff[i] << '\n';
+        printf("    coeff[%d]: %+2.2f\n", i+1,coeff[i]);
+
     }
     for (int i=0;i<n;i++)
         final_y += coeff[i];
@@ -58,10 +60,10 @@ int main(){
   
     std::cout << '\n';
     std::cout << " *** You entered: ***\n";
-    std::cout << "      x       y \n";
+    std::cout << "      x        y \n";
     
     for (int i=0;i<n;i++)
-        printf("     %.2f    %.2f \n", f[i].x, f[i].y);
+        printf("     %.2f    %5.2f \n", f[i].x, f[i].y);
     std::cout << '\n';
     
     int_y = lagrange_interpol(n,f,givenX);
