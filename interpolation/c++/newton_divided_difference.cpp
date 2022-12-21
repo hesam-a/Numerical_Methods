@@ -28,7 +28,7 @@ int main(){
 
     for (int i=2;i<n+1;i++){
         for (int j=0;j<n+1-i;j++){
-            p[j][i] =  (p[j+1,i-1] - p[j,i-1]) / (x[j+i-1] - x[j]);
+            p[j][i] =  (p[j+1][i-1] - p[j][i-1]) / (x[j+i-1] - x[j]);
         }
     }
     std::cout << "Enter the intended value for the interpolation: ";
