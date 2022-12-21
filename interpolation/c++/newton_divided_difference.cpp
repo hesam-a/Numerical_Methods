@@ -22,10 +22,8 @@ int main(){
 */
     
     for (int i=0;i<n;i++){
-        for (int j=0;j<n+1;j++){
-            p[i][0] = x[i];  
-            p[i][1] = y[i];
-        }
+        p[i][0] = x[i];  
+        p[i][1] = y[i];
     }
 
     for (int i=2;i<n+1;i++){
