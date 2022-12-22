@@ -12,14 +12,6 @@ int main(){
     double y[n] = {0.5, 3.134, 5.9, 9.9, 10.2, 9.35, 7.2, 6.2};
 
     double p[n][n+1] = {0};
-
-/*    for (int i=0;i<n;i++){
-        for (int j=0;j<n+1;j++){
-            std::cout << p[i][j] << "  ";
-        }
-        std::cout << '\n';
-    }
-*/
     
     for (int i=0;i<n;i++){
         p[i][0] = x[i];  
@@ -35,8 +27,8 @@ int main(){
     double givenX;
     std::cin >> givenX;
     double b[n];
-    for (int i=1;i<n+1;i++)
-        b[i] = p[0][i];
+    for (int i=0;i<n;i++)
+        b[i] = p[0][i+1];
 
     double* lst=new double[n];
     double t=1;
@@ -54,7 +46,7 @@ int main(){
 
     double f=b[0];
 
-    for (int i=1;i<n+1;i++)
+    for (int i=1;i<n;i++)
         f += b[i]*lst[i-1];
 
     printf("The value of polynomial: %.3f \n",f);
