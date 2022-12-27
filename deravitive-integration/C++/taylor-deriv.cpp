@@ -55,9 +55,15 @@ int main(){
     std::vector<double> x = linspace(0.0,5*M_PI,100);
     std::vector<double> y;
     std::cout << '\n';
+
     FILE * temp = fopen("taylor.dat", "w"); 
     FILE * gnuplotPipe = popen ("gnuplot -persistent", "w");
-    if (gnuplotPipe){
+
+    for (int i=0;i<x.size();i++){
+        y.push_back(derivative(x[i],"central"));
+	fprintf(temp, "%lf  %lf  %lf\n",x[i],derivative(x[i],"central"),cos(x[i]));
+    }
+
     if (gnuplotPipe){
         fprintf(gnuplotPipe, "reset\n");
         fprintf(gnuplotPipe, "set term pngcairo enhanced font 'Arial Black,17' size 15in,12in \n");
@@ -79,11 +85,7 @@ int main(){
         fprintf(gnuplotPipe, "set key at 16.8,1.4 \n");
         fprintf(gnuplotPipe, "plot 'taylor.dat' u 1:2 with lines lw 4 lc 'red' title '{/*0.8:Bold Central difference}',\
 'taylor.dat' u 1:3 with points pt 7 ps 1.0 lc 'blue' title '{/*0.8:Bold True value}'\n");  
-        fflush(gnuplotPipe); //flush pipe
-
-    for (int i=0;i<x.size();i++){
-        y.push_back(derivative(x[i],"central"));
-	fprintf(temp, "%lf  %lf  %lf\n",x[i],derivative(x[i],"central"),cos(x[i]));
+        fflush(gnuplotPipe);
     }
     fprintf(gnuplotPipe, "e");
 
