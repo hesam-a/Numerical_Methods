@@ -15,7 +15,6 @@ std::vector<double> linspace(T start_in, T end_in, int num){
   
     double start = static_cast<double>(start_in);
     double end = static_cast<double>(end_in);
-    //double num = static_cast<double>(num_in);
   
     if (num == 0)
         return linspaced;
