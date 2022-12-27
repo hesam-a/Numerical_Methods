@@ -59,26 +59,28 @@ int main(){
     FILE * temp = fopen("taylor.dat", "w"); 
     FILE * gnuplotPipe = popen ("gnuplot -persistent", "w");
     if (gnuplotPipe){
-        fprintf(gnuplotPipe, "set termoption dash \n");
-        fprintf(gnuplotPipe, "set termoption font 'Arial Black,10' \n");
-        fprintf(gnuplotPipe, "set lmargin 10.0\n");
-        fprintf(gnuplotPipe, "set rmargin 10.0\n");
-        fprintf(gnuplotPipe, "set tmargin 5.0\n");
-        fprintf(gnuplotPipe, "set bmargin 5.0\n");
-        fprintf(gnuplotPipe, "set border lw 3.0\n");
-        fprintf(gnuplotPipe, "set xrange [-1:17]\n"); 
-        fprintf(gnuplotPipe, "set yrange [-1.5:1.5]\n"); 
-        fprintf(gnuplotPipe, "set xlabel '{/*1.5:Bold x}'\n");
-        fprintf(gnuplotPipe, "set xlabel offset 1.5\n");
-        fprintf(gnuplotPipe, "set ylabel '{/*1.5:Bold y(x)}'\n");
-        fprintf(gnuplotPipe, "set ylabel offset -0.25 \n");
-        fprintf(gnuplotPipe, "set title '{/*1.5:Bold Central difference derivative of sin(x)}'\n");
+    if (gnuplotPipe){
+        fprintf(gnuplotPipe, "reset\n");
+        fprintf(gnuplotPipe, "set term pngcairo enhanced font 'Arial Black,17' size 15in,12in \n");
+        fprintf(gnuplotPipe, "set output 'taylor.png' \n");
+        fprintf(gnuplotPipe, "set lmargin 8.0\n");
+        fprintf(gnuplotPipe, "set rmargin 4.0\n");
+        fprintf(gnuplotPipe, "set tmargin 3.0\n");
+        fprintf(gnuplotPipe, "set bmargin 4.0\n");
+        fprintf(gnuplotPipe, "set border lw 4.0\n");
+        fprintf(gnuplotPipe, "set xrange [-1:17]\n");
+        fprintf(gnuplotPipe, "set yrange [-1.5:1.5]\n");
+        fprintf(gnuplotPipe, "set xlabel '{/*1.0:Bold x}'\n");
+//        fprintf(gnuplotPipe, "set xlabel offset 1.5\n");
+        fprintf(gnuplotPipe, "set ylabel '{/*1.0:Bold y(x)}'\n");
+        fprintf(gnuplotPipe, "set ylabel offset 0.5 \n");
+        fprintf(gnuplotPipe, "set title '{/*1.0:Bold Central difference derivative of sin(x)}'\n");
         fprintf(gnuplotPipe, "set ytics font ',13' \n");
         fprintf(gnuplotPipe, "set xtics font ',13' \n");
         fprintf(gnuplotPipe, "set key at 16.8,1.4 \n");
-        fprintf(gnuplotPipe, "plot 'taylor.dat' u 1:2 with lines lw 3 lc 'red' title '{/*1.3:Bold Central difference}',\
-'taylor.dat' u 1:3 with points pt 7 ps 1.0 lc 'blue' title '{/*1.3:Bold True value}'\n");
-}
+        fprintf(gnuplotPipe, "plot 'taylor.dat' u 1:2 with lines lw 4 lc 'red' title '{/*0.8:Bold Central difference}',\
+'taylor.dat' u 1:3 with points pt 7 ps 1.0 lc 'blue' title '{/*0.8:Bold True value}'\n");  
+        fflush(gnuplotPipe); //flush pipe
 
     for (int i=0;i<x.size();i++){
         y.push_back(derivative(x[i],"central"));
